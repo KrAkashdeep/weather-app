@@ -2,8 +2,19 @@ const container = document.querySelector(".container");
 const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
+const box = document.querySelector(".search-box");
 
-search.addEventListener("click", () => {
+//on click enter then the function is called
+box.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    myFunc();
+  }
+});
+
+//on click search button then the function is called
+search.addEventListener("click", myFunc);
+
+function myFunc() {
   const APIKey = "42599bd713213011f5c14224cb6ec66c";
   const city = document.querySelector(".search-box input").value;
 
@@ -40,7 +51,6 @@ search.addEventListener("click", () => {
         case "Fog":
           image.src = "images/mist.png";
           break;
-
         default:
           image.src = "images/cloud.png";
       }
@@ -50,4 +60,4 @@ search.addEventListener("click", () => {
       humidity.innerHTML = `${json.main.humidity}%`;
       wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
     });
-});
+}
